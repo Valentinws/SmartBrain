@@ -1,6 +1,6 @@
 import './ImageLinkForm.css';
 
-const ImageLinkForm = () => {
+const ImageLinkForm = ({ onInputChange, onButtonSubmit }) => {
     return (
         <div>
             <h1>
@@ -9,13 +9,16 @@ const ImageLinkForm = () => {
 
             <div className="center ">
                 <div className="pa4 br3 shadow-5 center form ">
-                    <input placeholder="Insert image Url"
-                        name="ImgLink" className="f4 pa2 w-70 " />
-                    <button className="w-30 grow link f4  
-                    shadow-5 ph3 pv2 
-            dib white bg-light-purple  "
+                    <input
+                        placeholder="Insert image Url"
+                        onChange={onInputChange}
+                        name="ImgLink"
+                        className="f4 pa2 w-70 " />
+                    <button
+                        className="w-30 grow link f4 shadow-5 ph3 pv2 
+                                    dib white bg-light-purple  "
+                        onClick={onButtonSubmit}
                         formAction="submit"
-
                     >Detect</button>
                 </div>
             </div>
