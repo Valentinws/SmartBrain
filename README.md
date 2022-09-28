@@ -1,4 +1,4 @@
-A great project for frace recognition, with API. 
+A great project for face recognition, with API. 
 
 # Getting Started with Create React App
 
