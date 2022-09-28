@@ -7,7 +7,7 @@ const Rank = () => {
                 {"The UserName has a rank of "}
             </div>
             <div className="white f1">
-                {"5"}
+                {"#5"}
             </div>
         </div>
     );
