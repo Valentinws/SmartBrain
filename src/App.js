@@ -3,10 +3,11 @@ import Navigation from './components/Navigation/Navigation';
 import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
+import FaceRecognition from './components/FaceRecognition/FaceRecognition';
+import SignIn from './components/Signin/SignIn';
 import ParticlesBg from 'particles-bg'
 import { Component } from 'react';
 // import Clarifai from 'clarifai';
-import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 
 
 // const app = new Clarifai.App({
@@ -50,6 +51,7 @@ class App extends Component {
     return (
       <div className="App" >
         <ParticlesBg type="cobweb" bg={true} />
+        <SignIn />
         <Navigation />
         <Logo />
         <Rank />

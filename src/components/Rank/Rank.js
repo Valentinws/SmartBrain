@@ -3,7 +3,7 @@ const Rank = () => {
     return (
         <div>
 
-            <div className="white f3">
+            <div className="white f2">
                 {"The UserName has a rank of "}
             </div>
             <div className="white f1">
