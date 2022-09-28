@@ -1,5 +1,9 @@
 A great project for face recognition, with API. 
 
+Comments: 
+1. I didn't clear this.state with deconstructing like this: const {route, isSignedIn,imgUrl } = this.state; 
+2. I didn't resolved the clarifai in the frontend  
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
