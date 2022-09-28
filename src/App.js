@@ -1,18 +1,17 @@
 import './App.css';
-import { useState } from 'react';
 import Navigation from './components/Navigation/Navigation';
 import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import ParticlesBg from 'particles-bg'
 import { Component } from 'react';
-import Clarifai from 'clarifai';
+// import Clarifai from 'clarifai';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 
 
-const app = new Clarifai.App({
-  apiKey: "13ad5c4f763a44c8bb49f26438d33611"
-});
+// const app = new Clarifai.App({
+//   apiKey: "13ad5c4f763a44c8bb49f26438d33611"
+// });
 
 class App extends Component {
   constructor() {
@@ -26,11 +25,12 @@ class App extends Component {
 
   onInputChange = (event) => {
     this.setState({ input: event.target.value });
+    console.log(this.state.input);
   }
 
-  onButtonSubmit() {
-    console.log('clicked');
-    this.setState({ imageUrl: this.state.input });
+  onButtonSubmit = () => {
+    this.setState({ imgUrl: this.state.input });
+    console.log(this.state.imgUrl);
 
     // app.models.predict(
     //   "13ad5c4f763a44c8bb49f26438d33611",
