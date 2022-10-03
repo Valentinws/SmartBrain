@@ -14,16 +14,24 @@ import { Component } from 'react';
 // const app = new Clarifai.App({
 //   apiKey: "13ad5c4f763a44c8bb49f26438d33611"
 // });
+const initialState = {
+  input: '',
+  imgUrl: '',
+  route: 'signin',
+  isSignedIn: false,
+  user: {
+    id: '',
+    name: '',
+    email: '',
+    entries: 0,
+    joined: ''
+  }
+}
 
 class App extends Component {
   constructor() {
     super();
-    this.state = {
-      input: '',
-      imgUrl: '',
-      route: 'signin',
-      isSignedIn: false
-    }
+    this.state = initialState;
   }
 
 
@@ -34,6 +42,19 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({ imgUrl: this.state.input });
+    fetch('http://localhost:3000/image', {
+      method: 'put',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id: this.state.user.id,
+      })
+    })
+      .then(response => response.json())
+      .then(entriesr => {
+        this.setState(Object.assign(this.state.user, { entries: entriesr }))
+      })
+    Object.assign()
+
 
 
     // app.models.predict(
@@ -51,12 +72,26 @@ class App extends Component {
   }
 
   onRouteChange = (route) => {
-    this.setState({ route: route });
-    if (route === 'home') {
+    if (route === 'signout') {
+      this.setState(initialState);
+    } else if (route === 'home') {
       this.setState({ isSignedIn: true })
-    } else this.setState({ isSignedIn: false })
+    }
+    this.setState({ route: route })
   }
 
+  loadUser = (userr) => {
+    this.setState({
+      user: {
+        id: userr.id,
+        name: userr.name,
+        email: userr.email,
+        entries: userr.entries,
+        joined: userr.joined
+      }
+    }
+    )
+  }
 
   render() {
     return (
@@ -66,7 +101,10 @@ class App extends Component {
         {this.state.route === 'home'
           ? <div>
             <Logo />
-            <Rank />
+            <Rank
+              name={this.state.user.name}
+              entries={this.state.user.entries}
+            />
             <ImageLinkForm
               onInputChange={this.onInputChange}
               onButtonSubmit={this.onButtonSubmit}
@@ -74,8 +112,8 @@ class App extends Component {
             <FaceRecognition imageUrl={this.state.imgUrl} />
           </div>
           : (this.state.route === 'signin'
-            ? <SignIn onRouteChange={this.onRouteChange} />
-            : <Register onRouteChange={this.onRouteChange} />
+            ? <SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
+            : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
           )
 
         }
